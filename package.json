@@ -66,13 +66,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bpampuch/pdfmake.git"
+    "url": "git://github.com/Bmt-Mek/pdfmake.git"
   },
   "keywords": ["pdf", "javascript", "printing", "layout"],
   "author": "Bartek Pampuch <bartosz.pampuch@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bpampuch/pdfmake/issues"
+    "url": "https://github.com/Bmt-Mek/pdfmake/issues"
   },
   "homepage": "http://pdfmake.org",
   "config": {
