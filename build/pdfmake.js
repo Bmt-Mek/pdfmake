@@ -45,7 +45,11 @@ var web_dom_collections_for_each = __webpack_require__(6208);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.to-string.js
 var es_regexp_to_string = __webpack_require__(3290);
 // EXTERNAL MODULE: ./node_modules/@foliojs-fork/pdfkit/js/pdfkit.es5.js
+<<<<<<< HEAD
 var pdfkit_es5 = __webpack_require__(2461);
+=======
+var pdfkit_es5 = __webpack_require__(450);
+>>>>>>> 93cf905 (Feat (Add THSarabunNew font.))
 ;// CONCATENATED MODULE: ./src/PDFDocument.js
 /* provided dependency */ var Buffer = __webpack_require__(3438)["Buffer"];
 
@@ -6138,7 +6142,11 @@ var OutputDocument = /*#__PURE__*/function () {
 }();
 /* harmony default export */ var src_OutputDocument = (OutputDocument);
 // EXTERNAL MODULE: ./node_modules/file-saver/dist/FileSaver.min.js
+<<<<<<< HEAD
 var FileSaver_min = __webpack_require__(1623);
+=======
+var FileSaver_min = __webpack_require__(6470);
+>>>>>>> 93cf905 (Feat (Add THSarabunNew font.))
 ;// CONCATENATED MODULE: ./src/browser-extensions/OutputDocumentBrowser.js
 
 
@@ -21612,7 +21620,11 @@ module.exports = {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 2461:
+=======
+/***/ 450:
+>>>>>>> 93cf905 (Feat (Add THSarabunNew font.))
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -25926,6 +25938,7 @@ function generateFrame(data, options) {
   return generate(data, ver, mode, ecclevel, mask);
 }
 
+<<<<<<< HEAD
 // options
 // - modulesize: a number. this is a size of each modules in pixels, and
 //   defaults to 5px.
@@ -26941,6 +26954,10 @@ function bottomMostContext(c1, c2) {
 
 /*
 PDFAbstractReference - abstract class for PDF reference
+=======
+/*
+PDFAbstractReference - abstract class for PDF reference
+>>>>>>> 93cf905 (Feat (Add THSarabunNew font.))
 */
 var PDFAbstractReference = /*#__PURE__*/function () {
   function PDFAbstractReference() {
@@ -95504,7 +95521,11 @@ module.exports = __webpack_require__(1117);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 1623:
+=======
+/***/ 6470:
+>>>>>>> 93cf905 (Feat (Add THSarabunNew font.))
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
