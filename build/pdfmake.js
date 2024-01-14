@@ -1,4 +1,4 @@
-/*! pdfmake v0.3.0-beta.7, @license MIT, @link http://pdfmake.org */
+/*! pdfmake v0.3.0-beta.8, @license MIT, @link http://pdfmake.org */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -22,6 +22,12 @@ __webpack_require__.d(__webpack_exports__, {
   "default": function() { return /* binding */ browser_extensions; }
 });
 
+// EXTERNAL MODULE: ./node_modules/core-js/configurator.js
+var configurator = __webpack_require__(4525);
+var configurator_default = /*#__PURE__*/__webpack_require__.n(configurator);
+// EXTERNAL MODULE: ./src/browser-extensions/virtual-fs-cjs.js
+var virtual_fs_cjs = __webpack_require__(50);
+var virtual_fs_cjs_default = /*#__PURE__*/__webpack_require__.n(virtual_fs_cjs);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
 var es_object_to_string = __webpack_require__(853);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
@@ -43,7 +49,7 @@ var web_dom_collections_for_each = __webpack_require__(6208);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.to-string.js
 var es_regexp_to_string = __webpack_require__(3290);
 // EXTERNAL MODULE: ./node_modules/@foliojs-fork/pdfkit/js/pdfkit.es5.js
-var pdfkit_es5 = __webpack_require__(450);
+var pdfkit_es5 = __webpack_require__(2461);
 ;// CONCATENATED MODULE: ./src/PDFDocument.js
 /* provided dependency */ var Buffer = __webpack_require__(3438)["Buffer"];
 
@@ -6136,7 +6142,7 @@ var OutputDocument = /*#__PURE__*/function () {
 }();
 /* harmony default export */ var src_OutputDocument = (OutputDocument);
 // EXTERNAL MODULE: ./node_modules/file-saver/dist/FileSaver.min.js
-var FileSaver_min = __webpack_require__(6470);
+var FileSaver_min = __webpack_require__(1623);
 ;// CONCATENATED MODULE: ./src/browser-extensions/OutputDocumentBrowser.js
 
 
@@ -6371,12 +6377,6 @@ var URLBrowserResolver = /*#__PURE__*/function () {
   return URLBrowserResolver;
 }();
 /* harmony default export */ var browser_extensions_URLBrowserResolver = (URLBrowserResolver);
-// EXTERNAL MODULE: ./src/browser-extensions/virtual-fs-cjs.js
-var virtual_fs_cjs = __webpack_require__(50);
-var virtual_fs_cjs_default = /*#__PURE__*/__webpack_require__.n(virtual_fs_cjs);
-// EXTERNAL MODULE: ./node_modules/core-js/configurator.js
-var configurator = __webpack_require__(9502);
-var configurator_default = /*#__PURE__*/__webpack_require__.n(configurator);
 ;// CONCATENATED MODULE: ./src/browser-extensions/index.js
 function browser_extensions_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; browser_extensions_setPrototypeOf(subClass, superClass); }
 function browser_extensions_setPrototypeOf(o, p) { browser_extensions_setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return browser_extensions_setPrototypeOf(o, p); }
@@ -6396,6 +6396,12 @@ var defaultClientFonts = {
     bold: 'Roboto-Medium.ttf',
     italics: 'Roboto-Italic.ttf',
     bolditalics: 'Roboto-MediumItalic.ttf'
+  },
+  THSarabunNew: {
+    normal: 'THSarabunNew-Regular.ttf',
+    bold: 'THSarabunNew-Bold.ttf',
+    italics: 'THSarabunNew-Italic.ttf',
+    bolditalics: 'THSarabunNew-BoldItalic.ttf'
   }
 };
 var browser_extensions_pdfmake = /*#__PURE__*/function (_pdfmakeBase) {
@@ -11761,7 +11767,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 var base64 = __webpack_require__(5155);
-var ieee754 = __webpack_require__(4525);
+var ieee754 = __webpack_require__(1341);
 var customInspectSymbol = typeof Symbol === 'function' && typeof Symbol['for'] === 'function' // eslint-disable-line dot-notation
 ? Symbol['for']('nodejs.util.inspect.custom') // eslint-disable-line dot-notation
 : null;
@@ -21665,7 +21671,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 450:
+/***/ 2461:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -33131,7 +33137,7 @@ if ( true && module.exports) {
 
 /***/ }),
 
-/***/ 9502:
+/***/ 4525:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 var hasOwn = __webpack_require__(4792);
@@ -48114,7 +48120,7 @@ module.exports = function(stream_module) {
 
 /***/ }),
 
-/***/ 4525:
+/***/ 1341:
 /***/ (function(__unused_webpack_module, exports) {
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -62048,7 +62054,7 @@ module.exports = __webpack_require__(1117);
 
 /***/ }),
 
-/***/ 6470:
+/***/ 1623:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
