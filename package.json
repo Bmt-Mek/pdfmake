@@ -68,7 +68,12 @@
     "type": "git",
     "url": "git://github.com/Bmt-Mek/pdfmake.git"
   },
-  "keywords": ["pdf", "javascript", "printing", "layout"],
+  "keywords": [
+    "pdf",
+    "javascript",
+    "printing",
+    "layout"
+  ],
   "author": "Bartek Pampuch <bartosz.pampuch@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -78,7 +83,10 @@
   "config": {
     "blanket": {
       "pattern": "src",
-      "data-cover-never": ["node_modules", "tests"]
+      "data-cover-never": [
+        "node_modules",
+        "tests"
+      ]
     }
   }
 }
