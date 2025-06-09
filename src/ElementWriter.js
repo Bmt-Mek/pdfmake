@@ -8,12 +8,19 @@ import { EventEmitter } from 'events';
  * their positions based on the context
  */
 class ElementWriter extends EventEmitter {
+
+	/**
+	 * @param {DocumentContext} context
+	 */
 	constructor(context) {
 		super();
 		this._context = context;
 		this.contextStack = [];
 	}
 
+	/**
+	 * @returns {DocumentContext}
+	 */
 	context() {
 		return this._context;
 	}
@@ -259,9 +266,12 @@ class ElementWriter extends EventEmitter {
 		}
 	}
 
-	addVector(vector, ignoreContextX, ignoreContextY, index) {
+	addVector(vector, ignoreContextX, ignoreContextY, index, forcePage) {
 		let context = this.context();
 		let page = context.getCurrentPage();
+		if (isNumber(forcePage)) {
+			page = context.pages[forcePage];
+		}
 		let position = this.getCurrentPositionOnPage();
 
 		if (page) {
@@ -322,10 +332,21 @@ class ElementWriter extends EventEmitter {
 					var v = pack(item.item);
 
 					offsetVector(v, useBlockXOffset ? (block.xOffset || 0) : ctx.x, useBlockYOffset ? (block.yOffset || 0) : ctx.y);
-					page.items.push({
-						type: 'vector',
-						item: v
-					});
+					if (v._isFillColorFromUnbreakable) {
+						// If the item is a fillColor from an unbreakable block
+						// We have to add it at the beginning of the items body array of the page
+						delete v._isFillColorFromUnbreakable;
+						const endOfBackgroundItemsIndex = ctx.backgroundLength[ctx.page];
+						page.items.splice(endOfBackgroundItemsIndex, 0, {
+							type: 'vector',
+							item: v
+						});
+					} else {
+						page.items.push({
+							type: 'vector',
+							item: v
+						});
+					}
 					break;
 
 				case 'image':
@@ -357,7 +378,7 @@ class ElementWriter extends EventEmitter {
 	 * pushContext(width, height) - creates and pushes a new context with the specified width and height
 	 * pushContext() - creates a new context for unbreakable blocks (with current availableWidth and full-page-height)
 	 *
-	 * @param {object|number} contextOrWidth
+	 * @param {DocumentContext|number} contextOrWidth
 	 * @param {number} height
 	 */
 	pushContext(contextOrWidth, height) {
@@ -367,7 +388,9 @@ class ElementWriter extends EventEmitter {
 		}
 
 		if (isNumber(contextOrWidth)) {
-			contextOrWidth = new DocumentContext({ width: contextOrWidth, height: height }, { left: 0, right: 0, top: 0, bottom: 0 });
+			let width = contextOrWidth;
+			contextOrWidth = new DocumentContext();
+			contextOrWidth.addPage({ width: width, height: height }, { left: 0, right: 0, top: 0, bottom: 0 });
 		}
 
 		this.contextStack.push(this.context());

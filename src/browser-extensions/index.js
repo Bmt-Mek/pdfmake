@@ -6,7 +6,7 @@ import URLBrowserResolver from './URLBrowserResolver';
 
 // core-js: Polyfills will be used only if natives completely unavailable.
 configurator({
-  useNative: ['Promise'],
+	useNative: ['Promise']
 });
 
 let defaultClientFonts = {
@@ -25,11 +25,11 @@ let defaultClientFonts = {
 };
 
 class pdfmake extends pdfmakeBase {
-  constructor() {
-    super();
-    this.urlResolver = new URLBrowserResolver(this.virtualfs);
-    this.fonts = defaultClientFonts;
-  }
+	constructor() {
+		super();
+		this.urlResolver = () => new URLBrowserResolver(this.virtualfs);
+		this.fonts = defaultClientFonts;
+	}
 
   addFontContainer(fontContainer) {
     this.addVirtualFileSystem(fontContainer.vfs);

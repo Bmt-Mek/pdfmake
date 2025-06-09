@@ -34,12 +34,18 @@ class DocMeasure {
 		return this.measureNode(docStructure);
 	}
 
+	measureBlock(node) {
+		return this.measureNode(node);
+	}
+
 	measureNode(node) {
 		return this.styleStack.auto(node, () => {
 			// TODO: refactor + rethink whether this is the proper way to handle margins
 			node._margin = getNodeMargin(node, this.styleStack);
 
-			if (node.columns) {
+			if (node.section) {
+				return extendMargins(this.measureSection(node));
+			} else if (node.columns) {
 				return extendMargins(this.measureColumns(node));
 			} else if (node.stack) {
 				return extendMargins(this.measureVerticalContainer(node));
@@ -128,7 +134,13 @@ class DocMeasure {
 		this.convertIfBase64Image(node);
 
 		let image = this.pdfDocument.provideImage(node.image);
+
 		let imageSize = { width: image.width, height: image.height };
+
+		// If EXIF orientation calls for it, swap width and height
+		if (image.orientation > 4) {
+			imageSize = { width: image.height, height: image.width };
+		}
 
 		this.measureImageWithDimensions(node, imageSize);
 
@@ -433,16 +445,17 @@ class DocMeasure {
 				if (item.listMarker._inlines) {
 					node._gapSize.width = Math.max(node._gapSize.width, item.listMarker._inlines[0].width);
 				}
-			}  // TODO: else - nested lists numbering
+
+				if (node.reversed) {
+					counter--;
+				} else {
+					counter++;
+				}
+			}
 
 			node._minWidth = Math.max(node._minWidth, items[i]._minWidth);
 			node._maxWidth = Math.max(node._maxWidth, items[i]._maxWidth);
 
-			if (node.reversed) {
-				counter--;
-			} else {
-				counter++;
-			}
 		}
 
 		node._minWidth += node._gapSize.width;
@@ -454,6 +467,14 @@ class DocMeasure {
 				item.listMarker._minWidth = item.listMarker._maxWidth = node._gapSize.width;
 			}
 		}
+
+		return node;
+	}
+
+	measureSection(node) {
+		// TODO: properties
+
+		node.section = this.measureNode(node.section);
 
 		return node;
 	}

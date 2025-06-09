@@ -9,8 +9,8 @@ describe('DocumentContext', function () {
 	var pc;
 
 	beforeEach(function () {
-		pc = new DocumentContext.default({ width: 400, height: 800, orientation: 'portrait' }, { left: 40, right: 40, top: 60, bottom: 60 });
-		// pc.addPage();
+		pc = new DocumentContext.default();
+		pc.addPage({ width: 400, height: 800, orientation: 'portrait' }, { left: 40, right: 40, top: 60, bottom: 60 });
 	});
 
 	it('should set initial values based on pageSize and pageMargins', function () {
@@ -71,11 +71,10 @@ describe('DocumentContext', function () {
 		it('should save context in endingCell if provided', function () {
 			var endingCell = {};
 			pc.beginColumnGroup();
-			pc.beginColumn(30, 0, endingCell);
 			pc.y = 150;
 			pc.page = 3;
 			pc.availableHeight = 123;
-			pc.beginColumn(30, 0);
+			pc.beginColumn(30, 0, endingCell);
 
 			assert.equal(endingCell._columnEndingContext.y, 150);
 			assert.equal(endingCell._columnEndingContext.page, 3);
@@ -109,10 +108,10 @@ describe('DocumentContext', function () {
 			var endingCell = {};
 
 			pc.beginColumnGroup();
-			pc.beginColumn(30, 0, endingCell);
 			pc.y = 150;
 			pc.page = 3;
 			pc.availableHeight = 123;
+			pc.beginColumn(30, 0, endingCell);
 			pc.beginColumn(30, 0);
 			pc.y = 100;
 			pc.page = 3;
@@ -131,6 +130,7 @@ describe('DocumentContext', function () {
 			// col1 spans over 2 rows
 			pc.beginColumn(30, 0, endingCell);
 			pc.y = 350;
+			// col 2
 			pc.beginColumn(40);
 			pc.y = 100;
 			// column3 contains a nested table
@@ -147,7 +147,9 @@ describe('DocumentContext', function () {
 			pc.completeColumnGroup();
 
 			//// bottom of all non-spanned columns
-			assert.equal(pc.y, 120);
+			assert.equal(pc.y, 180);
+			// Check context has been stored in ending cell
+			assert.equal(endingCell2._columnEndingContext.y, 120);
 
 			// second row (of nested table)
 			pc.beginColumnGroup();
@@ -165,7 +167,7 @@ describe('DocumentContext', function () {
 			pc.completeColumnGroup();
 
 			//// bottom of all non-spanned columns
-			assert.equal(pc.y, 180);
+			assert.equal(pc.y, 350);
 
 			// second row
 			pc.beginColumnGroup();
